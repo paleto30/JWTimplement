@@ -2,7 +2,10 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\AuthController;
+
+use App\Http\Controllers\LibroController;
+use App\Http\Controllers\EditorialController;
+use App\Http\Controllers\EscritorController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -19,11 +22,18 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 
-
+/* 
 Route::group([
     'middleware'=>'api',
     'prefix'=> 'auth'
 ], function($route){
     Route::post('/register',[AuthController::class,'register']);
     Route::post('/login',[AuthController::class,'login']);
-});
+}); */
+
+
+Route::get('libros', [LibroController::class, 'obtenerEscritos']);
+
+Route::get('escritores',[EscritorController::class, 'getDatosEscritores']);
+
+Route::get('editorial',[EditorialController::class, 'consultaEditorial']);
