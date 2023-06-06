@@ -32,8 +32,21 @@ Route::group([
 }); */
 
 
+
+/* obtener los libros  por un filtro , revisar metodo del controlador*/
 Route::get('libros', [LibroController::class, 'obtenerEscritos']);
 
+/* obtener escritores */
 Route::get('escritores',[EscritorController::class, 'getDatosEscritores']);
 
+/* obtener editoriales */
 Route::get('editorial',[EditorialController::class, 'consultaEditorial']);
+
+/* agregar un libro */
+Route::post('libros/add',[LibroController::class,'addNewBook']);
+
+/* buscar libro por nombre */
+Route::get('libros/buscar',[LibroController::class, 'getOneByName']);
+
+/* actualizar un libro */
+Route::put('libros/update', [LibroController::class, 'updateBook']);
