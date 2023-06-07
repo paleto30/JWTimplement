@@ -50,3 +50,9 @@ Route::get('libros/buscar',[LibroController::class, 'getOneByName']);
 
 /* actualizar un libro */
 Route::put('libros/update', [LibroController::class, 'updateBook']);
+
+/* borrar un libro */
+Route::delete('libros/delete', [LibroController::class, 'deleteBook']);
+
+
+Route::get('libros/all',[LibroController::class,'allBook']);

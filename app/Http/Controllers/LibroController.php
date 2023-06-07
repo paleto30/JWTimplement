@@ -54,6 +54,15 @@ class LibroController extends Controller
 
 
 
+    public function allBook(){
+
+        //return Libro::paginate(25);
+        return Libro::all();
+        /* $cantidad = count(Libro::get());
+        return $cantidad; */
+    }
+
+
 
 
    
@@ -198,9 +207,39 @@ class LibroController extends Controller
                 'message' => 'No has cambiado nada',
             ],200);
         }
- 
-        
+       
     }
+
+
+    /**
+     * 
+     *  @author  Andres Galvis
+     * 
+     *  funcion que permite eliminar un libro y su registro de escriobe
+     *  @param  id
+    */
+
+
+    public function deleteBook(Request $req){
+        $book = Libro::find($req->id); 
+
+        if (! is_null($book)) {
+            $escribe = Escribe::where('id_libro',$req->id)->delete();
+            $book->delete();
+            return response()->json([
+                'escribe eliminada' => $escribe,
+                'libro eliminado'=> $book 
+            ], 200);
+        }else{
+            return response()->json([
+                'message' => 'Libro Inexistente',
+            ],401);
+        }
+
+    }
+
+
+
 
 
 
